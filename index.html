@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Web Page - Showcase of Me</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 12px 40px 0 rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+                         0 0 20px rgba(0, 255, 255, 0.3),
+                         0 0 30px rgba(0, 255, 255, 0.2);
+        }
+        
+        .neon-accent {
+            color: #00ffff;
+        }
+        
+        .skill-bar-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            height: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #0080ff);
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            position: relative;
+        }
+        
+        .skill-bar-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .profile-img {
+            border: 3px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        
+        .tag {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .tag:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        .trophy-item {
+            border-left: 3px solid #00ffff;
+            transition: all 0.3s ease;
+        }
+        
+        .trophy-item:hover {
+            border-left-width: 5px;
+            padding-left: 1.5rem;
+            background: rgba(0, 255, 255, 0.05);
+        }
+        
+        .quote-box {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(128, 0, 255, 0.1));
+            border-left: 4px solid #00ffff;
+        }
+        
+        .social-link {
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            transform: scale(1.2) rotate(5deg);
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+        }
+        
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- HERO / INTRO -->
+        <div class="glass-card rounded-2xl p-6 md:p-8 mb-6 text-center">
+            <div class="flex flex-col items-center">
+                <img src="https://via.placeholder.com/150/00ffff/000000?text=ME" 
+                     alt="Profile" 
+                     class="profile-img w-32 h-32 rounded-full mb-4 object-cover">
+                <h1 class="text-4xl md:text-5xl font-bold mb-2 neon-text">Your Nickname</h1>
+                <p class="text-xl md:text-2xl mb-4 neon-accent">"Full-time Dreamer, Part-time Coder"</p>
+                <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+                    <span class="px-4 py-2 glass-card rounded-full">
+                        <i class="fas fa-graduation-cap neon-accent mr-2"></i>Mahasiswa
+                    </span>
+                    <span class="px-4 py-2 glass-card rounded-full">
+                        <i class="fas fa-calculator neon-accent mr-2"></i>Staff Accounting
+                    </span>
+                    <span class="px-4 py-2 glass-card rounded-full">
+                        <i class="fas fa-code neon-accent mr-2"></i>Sedang belajar Vibe Coding
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- BENTO GRID LAYOUT -->
+        <div class="bento-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            
+            <!-- SKILL BARS - IT -->
+            <div class="glass-card rounded-2xl p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-laptop-code mr-2"></i>Skill IT (AI-Assisted)
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Problem Solving pakai AI</span>
+                            <span class="text-sm neon-accent font-bold">91%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 91%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Ngerti masalahnya, AI bantu jawabannya</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Prompt ke AI biar nurut</span>
+                            <span class="text-sm neon-accent font-bold">81%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 81%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Kadang sekali tembak, kadang 5x revisi</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Baca & edit kode hasil AI</span>
+                            <span class="text-sm neon-accent font-bold">55%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 55%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Bukan sekadar copy–paste (walau godaan besar)</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Debugging (dibantu AI)</span>
+                            <span class="text-sm neon-accent font-bold">60%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 60%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Error ketemu cepat, pahamnya belakangan</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Backend / API sederhana</span>
+                            <span class="text-sm neon-accent font-bold">45%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 45%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Bisa jalan, belum tentu elegan</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Database / SQL</span>
+                            <span class="text-sm neon-accent font-bold">50%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 50%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">SELECT aman, JOIN sambil mikir</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKILL BARS - ACCOUNTING -->
+            <div class="glass-card rounded-2xl p-6">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-calculator mr-2"></i>Skill Accounting
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Pencatatan Transaksi</span>
+                            <span class="text-sm neon-accent font-bold">75%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 75%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Selama bukti lengkap, hidup tenang</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Debit vs Kredit</span>
+                            <span class="text-sm neon-accent font-bold">85%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Jarang salah, kadang ragu</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Rekonsiliasi Bank</span>
+                            <span class="text-sm neon-accent font-bold">80%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 80%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Cocok = bahagia, beda = overthinking</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Arsip & Dokumen</span>
+                            <span class="text-sm neon-accent font-bold">70%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 70%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Folder rapi, kepala tidak selalu</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKILL BARS - KEHIDUPAN -->
+            <div class="glass-card rounded-2xl p-6">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-brain mr-2"></i>Skill Kehidupan
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Manajemen Waktu</span>
+                            <span class="text-sm neon-accent font-bold">90%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Nilai aman, kerja aman</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Tahan Stres Deadline</span>
+                            <span class="text-sm neon-accent font-bold">85%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 85%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Deadline masih terkontrol</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SKILL BARS - TIDAK RESMI -->
+            <div class="glass-card rounded-2xl p-6">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-star mr-2"></i>Skill Tidak Resmi
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Fasthand</span>
+                            <span class="text-sm neon-accent font-bold">80%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 80%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Lepas tangan dari kerjaan adalah motivasi</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Nonton/Gaming Tanpa Rasa Bersalah</span>
+                            <span class="text-sm neon-accent font-bold">90%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Pro player</p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <span class="text-sm">Bertahan Hidup TI + Accounting</span>
+                            <span class="text-sm neon-accent font-bold">90%</span>
+                        </div>
+                        <div class="skill-bar-container">
+                            <div class="skill-bar-fill" style="width: 90%"></div>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1">Dual class unlocked</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MY FAVORITES -->
+            <div class="glass-card rounded-2xl p-6">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-heart mr-2"></i>Asupan Gizi Harian
+                </h2>
+                <div class="flex flex-wrap gap-3">
+                    <span class="tag px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-tv mr-2"></i>Donghua
+                    </span>
+                    <span class="tag px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-gamepad mr-2"></i>Game
+                    </span>
+                    <span class="tag px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-utensils mr-2"></i>Mie
+                    </span>
+                    <span class="tag px-4 py-2 rounded-full text-sm">
+                        <i class="fas fa-coins mr-2"></i>Mencari Cuan
+                    </span>
+                </div>
+                
+                <!-- Game Info -->
+                <div class="mt-6 pt-6 border-t border-gray-700">
+                    <h3 class="text-lg font-semibold mb-3 neon-accent">
+                        <i class="fas fa-trophy mr-2"></i>Game Profile
+                    </h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex items-center">
+                            <i class="fas fa-mobile-alt neon-accent mr-2"></i>
+                            <span><strong>Mobile Legends:</strong> Username - ID: 123456789</span>
+                        </div>
+                        <!-- Tambahkan game lain di sini -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- TROPHY ROOM -->
+            <div class="glass-card rounded-2xl p-6 md:col-span-2">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-trophy mr-2"></i>Trophy Room
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="trophy-item pl-4 py-2">
+                        <div class="flex items-center mb-1">
+                            <i class="fas fa-crown neon-accent mr-2"></i>
+                            <span class="font-semibold">Rank Mythic di Mobile Legends</span>
+                        </div>
+                        <p class="text-xs text-gray-400">Pro player mode activated</p>
+                    </div>
+                    
+                    <div class="trophy-item pl-4 py-2">
+                        <div class="flex items-center mb-1">
+                            <i class="fas fa-certificate neon-accent mr-2"></i>
+                            <span class="font-semibold">Dual Skill Unlocked</span>
+                        </div>
+                        <p class="text-xs text-gray-400">Accounting + IT = Power Combo</p>
+                    </div>
+                    
+                    <div class="trophy-item pl-4 py-2">
+                        <div class="flex items-center mb-1">
+                            <i class="fas fa-sun neon-accent mr-2"></i>
+                            <span class="font-semibold">Berhasil Bangun Pagi Hari Ini</span>
+                        </div>
+                        <p class="text-xs text-gray-400">Achievement unlocked: Morning Person</p>
+                    </div>
+                    
+                    <div class="trophy-item pl-4 py-2">
+                        <div class="flex items-center mb-1">
+                            <i class="fas fa-code neon-accent mr-2"></i>
+                            <span class="font-semibold">Survive Dual Class Life</span>
+                        </div>
+                        <p class="text-xs text-gray-400">90% success rate, masih hidup</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUOTE OF THE DAY -->
+            <div class="glass-card rounded-2xl p-6 quote-box">
+                <h2 class="text-2xl font-bold mb-4 neon-accent">
+                    <i class="fas fa-quote-left mr-2"></i>Quote of the Day
+                </h2>
+                <blockquote class="text-lg italic mb-2">
+                    "Coding itu kayak accounting, kalau balance-nya salah, semua error."
+                </blockquote>
+                <p class="text-sm text-gray-400 text-right">— Me, probably</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="glass-card rounded-2xl p-6 mt-6 text-center">
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="https://github.com/yourusername" 
+                   target="_blank" 
+                   class="social-link text-2xl text-gray-400 hover:text-cyan-400">
+                    <i class="fab fa-github"></i>
+                </a>
+                <!-- Tambahkan social media lain di sini -->
+            </div>
+            <p class="text-sm text-gray-500">
+                &copy; 2024 - Made with <i class="fas fa-heart text-red-500"></i> and lots of coffee
+            </p>
+            <p class="text-xs text-gray-600 mt-2">
+                "Life is too short for boring websites"
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-bar-fill');
+                    skillBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 100);
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.glass-card').forEach(card => {
+            if (card.querySelector('.skill-bar-fill')) {
+                observer.observe(card);
+            }
+        });
+
+        // Random quote rotation (optional)
+        const quotes = [
+            {
+                text: "Coding itu kayak accounting, kalau balance-nya salah, semua error.",
+                author: "— Me, probably"
+            },
+            {
+                text: "Debugging is like being a detective in a crime movie where you're also the murderer.",
+                author: "— Unknown"
+            },
+            {
+                text: "The best code is the code you don't have to write.",
+                author: "— AI-Assisted Developer"
+            }
+        ];
+
+        // Uncomment untuk auto-rotate quotes setiap hari
+        // const quoteBox = document.querySelector('.quote-box blockquote');
+        // const quoteAuthor = document.querySelector('.quote-box p');
+        // const today = new Date().getDate();
+        // const selectedQuote = quotes[today % quotes.length];
+        // quoteBox.textContent = `"${selectedQuote.text}"`;
+        // quoteAuthor.textContent = selectedQuote.author;
+    </script>
+</body>
+</html>
