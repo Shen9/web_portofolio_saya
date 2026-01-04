@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Detail - Personal Web Page</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            font-family: 'Cinzel', 'Noto Serif SC', serif;
+        }
+        
+        body {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Serif SC', 'Cinzel', serif;
+            font-weight: 600;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        .neon-accent {
+            color: #00ffff;
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+                         0 0 20px rgba(0, 255, 255, 0.3),
+                         0 0 30px rgba(0, 255, 255, 0.2);
+        }
+        
+        .project-image {
+            width: 100%;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .project-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #00ffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: rgba(0, 255, 255, 0.6);
+            transform: translateX(-5px);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.3);
+        }
+        
+        .audio-control:hover {
+            border-color: rgba(0, 255, 255, 0.8);
+            box-shadow: 0 6px 30px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+        
+        .audio-control.muted {
+            border-color: rgba(255, 100, 100, 0.5);
+            box-shadow: 0 4px 20px rgba(255, 100, 100, 0.3);
+        }
+        
+        .audio-control.muted:hover {
+            border-color: rgba(255, 100, 100, 0.8);
+            box-shadow: 0 6px 30px rgba(255, 100, 100, 0.5);
+        }
+        
+        .audio-icon {
+            font-size: 1.5rem;
+            color: #00ffff;
+            transition: all 0.3s ease;
+        }
+        
+        .audio-control.muted .audio-icon {
+            color: #ff6464;
+        }
+        
+        .audio-text {
+            color: #e0e0e0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .audio-control {
+                bottom: 20px;
+                right: 20px;
+                padding: 10px 16px;
+            }
+            
+            .audio-text {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button mb-6 inline-block">
+            <i class="fas fa-arrow-left"></i>
+            <span>Kembali ke Portfolio</span>
+        </a>
+        
+        <!-- Project Header -->
+        <div class="glass-card rounded-2xl p-6 md:p-8 mb-6">
+            <h1 id="projectTitle" class="text-4xl md:text-5xl font-bold mb-4 neon-text">Loading...</h1>
+            <p id="projectDescription" class="text-lg text-gray-300">Loading project details...</p>
+        </div>
+        
+        <!-- Project Gallery -->
+        <div class="glass-card rounded-2xl p-6 md:p-8">
+            <h2 class="text-3xl font-bold mb-6 neon-accent">
+                <i class="fas fa-images mr-2"></i>Galeri Proyek
+            </h2>
+            <div id="projectGallery" class="gallery-grid">
+                <!-- Images will be loaded here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- AUDIO CONTROL -->
+    <div class="audio-control" id="audioControl">
+        <i class="fas fa-volume-up audio-icon" id="audioIcon"></i>
+        <span class="audio-text" id="audioText">Sound On</span>
+    </div>
+    <audio id="backgroundAudio" loop>
+        <source src="aset/old_roof.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung audio.
+    </audio>
+    
+    <script>
+        // Project data
+        const projects = {
+            'invoice-app': {
+                title: 'Invoice App',
+                description: 'Aplikasi untuk mengelola invoice dan faktur dengan fitur lengkap untuk pencatatan transaksi keuangan.',
+                images: [
+                    'aset/porto/proyek/inv_app/main_view_invapp.png',
+                    'aset/porto/proyek/inv_app/Screenshot 2026-01-04 171755.png',
+                    'aset/porto/proyek/inv_app/Screenshot 2026-01-04 171935.png',
+                    'aset/porto/proyek/inv_app/Screenshot 2026-01-04 171957.png',
+                    'aset/porto/proyek/inv_app/Screenshot 2026-01-04 172025.png',
+                    'aset/porto/proyek/inv_app/Screenshot 2026-01-04 172054.png',
+                    'aset/porto/proyek/inv_app/Screenshot 2026-01-04 172107.png'
+                ]
+            },
+            'cuti-app': {
+                title: 'Aplikasi Pengajuan Cuti Karyawan',
+                description: 'Sistem manajemen cuti untuk karyawan dengan fitur pengajuan, persetujuan, dan tracking cuti.',
+                images: [
+                    'aset/project-cuti.jpg'
+                ]
+            },
+            'simpan-pinjam': {
+                title: 'Simpan Pinjam Mobile',
+                description: 'Aplikasi mobile untuk simpan pinjam dengan interface yang user-friendly dan fitur keamanan terjamin.',
+                images: [
+                    'aset/project-simpan-pinjam.jpg'
+                ]
+            }
+        };
+        
+        // Get project from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('project') || 'invoice-app';
+        const project = projects[projectId] || projects['invoice-app'];
+        
+        // Load project data
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set title and description
+            document.getElementById('projectTitle').textContent = project.title;
+            document.getElementById('projectDescription').textContent = project.description;
+            document.title = `${project.title} - Project Detail`;
+            
+            // Load images
+            const gallery = document.getElementById('projectGallery');
+            project.images.forEach((imagePath, index) => {
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'glass-card rounded-xl overflow-hidden';
+                
+                const img = document.createElement('img');
+                img.src = imagePath;
+                img.alt = `${project.title} - Screenshot ${index + 1}`;
+                img.className = 'project-image w-full';
+                img.onerror = function() {
+                    this.src = 'https://via.placeholder.com/600x400/1a1a2e/00ffff?text=Screenshot+' + (index + 1);
+                };
+                
+                // Add click to view larger
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function() {
+                    window.open(this.src, '_blank');
+                });
+                
+                imgContainer.appendChild(img);
+                gallery.appendChild(imgContainer);
+            });
+            
+            // Audio Background Control
+            const audioControl = document.getElementById('audioControl');
+            const backgroundAudio = document.getElementById('backgroundAudio');
+            const audioIcon = document.getElementById('audioIcon');
+            const audioText = document.getElementById('audioText');
+            
+            // Load saved audio state
+            const savedMuted = localStorage.getItem('audioMuted') === 'true';
+            
+            if (backgroundAudio && audioControl) {
+                // Set initial state
+                if (savedMuted) {
+                    backgroundAudio.muted = true;
+                    audioControl.classList.add('muted');
+                    audioIcon.classList.remove('fa-volume-up');
+                    audioIcon.classList.add('fa-volume-mute');
+                    audioText.textContent = 'Sound Off';
+                } else {
+                    backgroundAudio.volume = 0.3;
+                    backgroundAudio.muted = false;
+                }
+                
+                // Toggle audio on click
+                audioControl.addEventListener('click', function() {
+                    if (backgroundAudio.muted) {
+                        backgroundAudio.muted = false;
+                        audioControl.classList.remove('muted');
+                        audioIcon.classList.remove('fa-volume-mute');
+                        audioIcon.classList.add('fa-volume-up');
+                        audioText.textContent = 'Sound On';
+                        localStorage.setItem('audioMuted', 'false');
+                        backgroundAudio.play().catch(err => {
+                            console.log('Audio play failed:', err);
+                        });
+                    } else {
+                        backgroundAudio.muted = true;
+                        audioControl.classList.add('muted');
+                        audioIcon.classList.remove('fa-volume-up');
+                        audioIcon.classList.add('fa-volume-mute');
+                        audioText.textContent = 'Sound Off';
+                        localStorage.setItem('audioMuted', 'true');
+                    }
+                });
+                
+                // Auto-play on first user interaction
+                let hasInteracted = false;
+                const enableAudio = () => {
+                    if (!hasInteracted && !savedMuted) {
+                        backgroundAudio.play().catch(err => {
+                            console.log('Auto-play prevented:', err);
+                        });
+                        hasInteracted = true;
+                    }
+                };
+                
+                document.addEventListener('click', enableAudio, { once: true });
+                document.addEventListener('keydown', enableAudio, { once: true });
+                document.addEventListener('touchstart', enableAudio, { once: true });
+            }
+        });
+    </script>
+</body>
+</html>
+
