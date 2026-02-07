@@ -380,7 +380,13 @@ html {
 }
 
 body {
-    padding-top: 70px; /* Space for fixed navbar */
+    padding-top: 80px; /* Space for fixed navbar */
+}
+
+/* Extra spacing for home section to prevent border clipping */
+#home {
+    margin-top: 10px;
+    padding-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -397,7 +403,12 @@ body {
     }
     
     body {
-        padding-top: 60px;
+        padding-top: 70px;
+    }
+    
+    #home {
+        margin-top: 5px;
+        padding-top: 15px;
     }
     
     .audio-control {

@@ -79,7 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                // Adjust offset based on section (home needs more space)
+                const sectionId = target.getAttribute('id');
+                const offset = sectionId === 'home' ? 100 : 90; // Extra space for home section
+                const offsetTop = target.offsetTop - offset;
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
