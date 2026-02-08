@@ -18,6 +18,29 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        @keyframes fadeInQuote {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .daily-quote-display {
+            font-family: 'Noto Serif SC', 'Cinzel', serif;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+            background: rgba(0, 255, 255, 0.05);
+            padding: 20px 20px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+    </style>
 </head>
 <body class="p-4 md:p-8">
     <!-- NAVIGATION BAR -->
@@ -88,12 +111,19 @@
                      onerror="this.onerror=null; this.src='./aset/jiangyan.jpg';">
                 <h1 class="text-4xl md:text-5xl font-bold mb-2 neon-text">Mario Valentino</h1>
                 <p class="text-xl md:text-2xl mb-4 neon-accent">"King"</p>
+                <div id="dailyQuote" class="daily-quote-display text-lg md:text-xl mb-6 italic text-gray-300 px-4 max-w-2xl mx-auto border-l-4 border-r-4 border-cyan-500 pl-4 pr-4">Loading quote...</div>
                 <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
                     <span class="px-4 py-2 glass-card rounded-full">
-                        <i class="fas fa-graduation-cap neon-accent mr-2"></i>Mahasiswa
+                        <i class="fas fa-graduation-cap neon-accent mr-2"></i>Mahasiswa Teknik Informatika
                     </span>
                     <span class="px-4 py-2 glass-card rounded-full">
                         <i class="fas fa-calculator neon-accent mr-2"></i>Staff Accounting
+                    </span>
+                    <span class="px-4 py-2 glass-card rounded-full">
+                        <i class="fas fa-terminal neon-accent mr-2"></i>Vibe Coder
+                    </span>
+                    <span class="px-4 py-2 glass-card rounded-full">
+                        <i class="fas fa-brain neon-accent mr-2"></i>Prompt Engineer
                     </span>
                 </div>
             </div>
@@ -383,8 +413,8 @@
                 <h2 class="text-2xl font-bold mb-4 neon-accent">
                     <i class="fas fa-quote-left mr-2"></i>Quote of the Day
                 </h2>
-                <blockquote class="text-lg italic mb-2">
-                    "If there is no way, then make one."
+                <blockquote id="quoteOfTheDay" class="text-lg italic mb-2">
+                    Loading quote...
                 </blockquote>
                 <p class="text-sm text-gray-400 text-right">— Me, probably</p>
             </div>
@@ -411,7 +441,7 @@
                 
                 <!-- Project 2 -->
                 <a href="project-detail.html?project=cuti-app" class="project-card glass-card rounded-xl p-4 block">
-                    <img src="aset/project-cuti.jpg" 
+                    <img src="aset/porto/proyek/cuti_app/dashboard.jpeg" 
                          alt="Aplikasi Pengajuan Cuti Karyawan" 
                          class="project-image mb-4"
                          onerror="this.src='https://via.placeholder.com/400x200/1a1a2e/00ffff?text=Aplikasi+Pengajuan+Cuti'">
@@ -424,7 +454,7 @@
                 
                 <!-- Project 3 -->
                 <a href="project-detail.html?project=simpan-pinjam" class="project-card glass-card rounded-xl p-4 block">
-                    <img src="aset/project-simpan-pinjam.jpg" 
+                    <img src="aset/porto/proyek/spm_mobile/dashboard.jpeg" 
                          alt="Simpan Pinjam Mobile" 
                          class="project-image mb-4"
                          onerror="this.src='https://via.placeholder.com/400x200/1a1a2e/00ffff?text=Simpan+Pinjam+Mobile'">
@@ -555,7 +585,6 @@
         <!-- AUDIO CONTROL -->
         <div class="audio-control" id="audioControl">
             <i class="fas fa-volume-up audio-icon" id="audioIcon"></i>
-            <span class="audio-text" id="audioText">Sound On</span>
         </div>
         <audio id="backgroundAudio" loop>
             <source src="aset/old_roof.mp3" type="audio/mpeg">
@@ -565,7 +594,7 @@
         <!-- FOOTER -->
         <footer class="glass-card rounded-2xl p-6 mt-6 text-center">
             <div class="flex justify-center gap-6 mb-4">
-                <a href="https://github.com/yourusername" 
+                <a href="https://github.com/Shen9" 
                    target="_blank" 
                    class="social-link text-2xl text-gray-400 hover:text-cyan-400">
                     <i class="fab fa-github"></i>
@@ -573,7 +602,7 @@
                 <!-- Tambahkan social media lain di sini -->
             </div>
             <p class="text-sm text-gray-500">
-                &copy; 2024 - Made with <i class="fas fa-heart text-red-500"></i> and lots of creativity
+                Made with <i class="fas fa-heart text-red-500"></i> and lots of creativity
             </p>
             <p class="text-xs text-gray-600 mt-2">
                 "Life is too short for boring websites"
@@ -582,6 +611,7 @@
     </div>
 
     <!-- Custom JavaScript -->
+    <script src="js/quote-manager.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

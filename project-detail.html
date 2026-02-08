@@ -136,6 +136,127 @@
             font-weight: 500;
         }
         
+        /* Video Thumbnail */
+        .video-thumbnail {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .video-thumbnail-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(26, 26, 46, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail:hover .video-thumbnail-content {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(26, 26, 46, 0.9));
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        
+        .video-thumbnail:hover .play-button {
+            background: rgba(0, 255, 255, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+        
+        .play-button i {
+            color: #000;
+            font-size: 32px;
+            margin-left: 4px;
+        }
+        
+        /* Modal Video (Fullscreen/Large View) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .modal-content {
+            position: relative;
+            width: 95%;
+            max-width: 1200px;
+            height: 90vh;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .modal-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(0, 255, 255, 0.5);
+            color: #00ffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10001;
+            font-size: 24px;
+        }
+        
+        .modal-close:hover {
+            background: rgba(0, 0, 0, 1);
+            border-color: rgba(0, 255, 255, 1);
+            transform: rotate(90deg);
+        }
+        
         @media (max-width: 768px) {
             .gallery-grid {
                 grid-template-columns: 1fr;
@@ -149,6 +270,21 @@
             
             .audio-text {
                 display: none;
+            }
+            
+            .modal-content {
+                width: 100%;
+                height: 100%;
+                border-radius: 0;
+            }
+            
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .play-button i {
+                font-size: 24px;
             }
         }
     </style>
@@ -178,10 +314,19 @@
         </div>
     </div>
     
+    <!-- VIDEO MODAL -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-content">
+            <video id="modalVideo" class="modal-video" controls></video>
+            <div class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+    </div>
+    
     <!-- AUDIO CONTROL -->
     <div class="audio-control" id="audioControl">
         <i class="fas fa-volume-up audio-icon" id="audioIcon"></i>
-        <span class="audio-text" id="audioText">Sound On</span>
     </div>
     <audio id="backgroundAudio" loop>
         <source src="aset/old_roof.mp3" type="audio/mpeg">
@@ -208,14 +353,27 @@
                 title: 'Aplikasi Pengajuan Cuti Karyawan',
                 description: 'Sistem manajemen cuti untuk karyawan dengan fitur pengajuan, persetujuan, dan tracking cuti.',
                 images: [
-                    'aset/project-cuti.jpg'
+                    'aset/porto/proyek/cuti_app/login.jpeg',
+                    'aset/porto/proyek/cuti_app/dashboard.jpeg',
+                    'aset/porto/proyek/cuti_app/sidebar.jpeg',
+                    'aset/porto/proyek/cuti_app/daftar_cuti.jpeg',
+                    'aset/porto/proyek/cuti_app/aju_cuti.jpeg',
+                    'aset/porto/proyek/cuti_app/aju_all.jpeg',
+                    'aset/porto/proyek/cuti_app/aproval.jpeg',
+                    'aset/porto/proyek/cuti_app/saldo.jpeg',
+                    'aset/porto/proyek/cuti_app/manage_cuti.jpeg',
+                    'aset/porto/proyek/cuti_app/manage_user.jpeg',
+                    'aset/porto/proyek/cuti_app/report.jpeg',
+                    'aset/porto/proyek/cuti_app/change_log.jpeg',
+                    'aset/porto/proyek/cuti_app/change_log2.jpeg'
                 ]
             },
             'simpan-pinjam': {
                 title: 'Simpan Pinjam Mobile',
                 description: 'Aplikasi mobile untuk simpan pinjam dengan interface yang user-friendly dan fitur keamanan terjamin.',
-                images: [
-                    'aset/project-simpan-pinjam.jpg'
+                
+                videos: [
+                    'aset/porto/proyek/spm_mobile/demo_vid.mp4'
                 ]
             }
         };
@@ -232,8 +390,69 @@
             document.getElementById('projectDescription').textContent = project.description;
             document.title = `${project.title} - Project Detail`;
             
-            // Load images
+            // Load videos first
             const gallery = document.getElementById('projectGallery');
+            const videoModal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalClose = document.getElementById('modalClose');
+            
+            // Load videos
+            if (project.videos) {
+                project.videos.forEach((videoPath, index) => {
+                    const videoContainer = document.createElement('div');
+                    videoContainer.className = 'glass-card rounded-xl overflow-hidden p-4';
+                    
+                    const thumbnail = document.createElement('div');
+                    thumbnail.className = 'video-thumbnail';
+                    
+                    const thumbnailContent = document.createElement('div');
+                    thumbnailContent.className = 'video-thumbnail-content';
+                    
+                    const playButton = document.createElement('div');
+                    playButton.className = 'play-button';
+                    playButton.innerHTML = '<i class="fas fa-play"></i>';
+                    
+                    thumbnailContent.appendChild(playButton);
+                    thumbnail.appendChild(thumbnailContent);
+                    
+                    // Click handler untuk buka modal
+                    thumbnail.addEventListener('click', function() {
+                        modalVideo.src = videoPath;
+                        videoModal.classList.add('active');
+                        modalVideo.play();
+                    });
+                    
+                    videoContainer.appendChild(thumbnail);
+                    gallery.appendChild(videoContainer);
+                });
+                
+                // Close modal
+                modalClose.addEventListener('click', function() {
+                    videoModal.classList.remove('active');
+                    modalVideo.pause();
+                    modalVideo.src = '';
+                });
+                
+                // Close modal when click outside video
+                videoModal.addEventListener('click', function(e) {
+                    if (e.target === videoModal) {
+                        videoModal.classList.remove('active');
+                        modalVideo.pause();
+                        modalVideo.src = '';
+                    }
+                });
+                
+                // Close modal on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                        videoModal.classList.remove('active');
+                        modalVideo.pause();
+                        modalVideo.src = '';
+                    }
+                });
+            }
+            
+            // Load images
             project.images.forEach((imagePath, index) => {
                 const imgContainer = document.createElement('div');
                 imgContainer.className = 'glass-card rounded-xl overflow-hidden';
@@ -260,63 +479,37 @@
             const audioControl = document.getElementById('audioControl');
             const backgroundAudio = document.getElementById('backgroundAudio');
             const audioIcon = document.getElementById('audioIcon');
-            const audioText = document.getElementById('audioText');
-            
-            // Load saved audio state
-            const savedMuted = localStorage.getItem('audioMuted') === 'true';
             
             if (backgroundAudio && audioControl) {
-                // Set initial state
-                if (savedMuted) {
-                    backgroundAudio.muted = true;
-                    audioControl.classList.add('muted');
-                    audioIcon.classList.remove('fa-volume-up');
-                    audioIcon.classList.add('fa-volume-mute');
-                    audioText.textContent = 'Sound Off';
-                } else {
-                    backgroundAudio.volume = 0.3;
-                    backgroundAudio.muted = false;
-                }
+                // Initial state: OFF (Manual control only)
+                backgroundAudio.pause();
+                backgroundAudio.volume = 0.3;
+                
+                // Set UI to "Ready to Play"
+                audioControl.classList.add('muted');
+                audioIcon.className = 'fas fa-play';
                 
                 // Toggle audio on click
-                audioControl.addEventListener('click', function() {
-                    if (backgroundAudio.muted) {
-                        backgroundAudio.muted = false;
+                audioControl.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    if (backgroundAudio.paused) {
+                        // Play
+                        backgroundAudio.play().then(() => {
                         audioControl.classList.remove('muted');
-                        audioIcon.classList.remove('fa-volume-mute');
-                        audioIcon.classList.add('fa-volume-up');
-                        audioText.textContent = 'Sound On';
-                        localStorage.setItem('audioMuted', 'false');
-                        backgroundAudio.play().catch(err => {
+                            audioIcon.className = 'fas fa-pause';
+                        }).catch(err => {
                             console.log('Audio play failed:', err);
                         });
                     } else {
-                        backgroundAudio.muted = true;
+                        // Pause
+                        backgroundAudio.pause();
                         audioControl.classList.add('muted');
-                        audioIcon.classList.remove('fa-volume-up');
-                        audioIcon.classList.add('fa-volume-mute');
-                        audioText.textContent = 'Sound Off';
-                        localStorage.setItem('audioMuted', 'true');
+                        audioIcon.className = 'fas fa-play';
                     }
                 });
-                
-                // Auto-play on first user interaction
-                let hasInteracted = false;
-                const enableAudio = () => {
-                    if (!hasInteracted && !savedMuted) {
-                        backgroundAudio.play().catch(err => {
-                            console.log('Auto-play prevented:', err);
-                        });
-                        hasInteracted = true;
-                    }
-                };
-                
-                document.addEventListener('click', enableAudio, { once: true });
-                document.addEventListener('keydown', enableAudio, { once: true });
-                document.addEventListener('touchstart', enableAudio, { once: true });
             }
         });
     </script>
 </body>
 </html>
-

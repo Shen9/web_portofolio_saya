@@ -279,10 +279,13 @@ body {
 
 /* Navigation Styles */
 .navbar {
+    /* expose a variable so body padding can match navbar height */
+    --navbar-height: 80px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    height: var(--navbar-height);
     z-index: 1000;
     background: rgba(10, 10, 10, 0.9);
     backdrop-filter: blur(15px);
@@ -379,14 +382,21 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Use navbar height variable so content spacing always matches header size */
 body {
-    padding-top: 80px; /* Space for fixed navbar */
+    /* increased gap to ensure large profile images won't be overlapped */
+    padding-top: calc(var(--navbar-height, 80px) + 40px);
 }
 
 /* Extra spacing for home section to prevent border clipping */
 #home {
-    margin-top: 10px;
-    padding-top: 20px;
+    margin-top: 16px;
+    padding-top: 40px;
+}
+
+/* Make sure profile image has a small safe offset on very small screens */
+.profile-img {
+    margin-top: 12px;
 }
 
 @media (max-width: 768px) {
@@ -419,6 +429,14 @@ body {
     
     .audio-text {
         display: none;
+    }
+}
+
+/* Reduce navbar height on smaller screens and adjust the variable */
+@media (max-width: 768px) {
+    .navbar {
+        --navbar-height: 64px; /* matches h-16 (Tailwind) */
+        height: var(--navbar-height);
     }
 }
 

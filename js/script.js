@@ -137,66 +137,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const audioControl = document.getElementById('audioControl');
     const backgroundAudio = document.getElementById('backgroundAudio');
     const audioIcon = document.getElementById('audioIcon');
-    const audioText = document.getElementById('audioText');
-    
-    // Load saved audio state
-    const savedMuted = localStorage.getItem('audioMuted') === 'true';
     
     if (backgroundAudio && audioControl) {
-        // Set initial state
-        if (savedMuted) {
-            backgroundAudio.muted = true;
-            audioControl.classList.add('muted');
-            audioIcon.classList.remove('fa-volume-up');
-            audioIcon.classList.add('fa-volume-mute');
-            audioText.textContent = 'Sound Off';
-        } else {
-            // Try to play audio (will fail if user hasn't interacted)
-            backgroundAudio.volume = 0.3; // Set volume to 30%
-            backgroundAudio.muted = false;
-        }
+        // Initial state: OFF (Manual control only)
+        backgroundAudio.pause();
+        backgroundAudio.volume = 0.3;
+        
+        // Set UI to "Ready to Play"
+        audioControl.classList.add('muted');
+        audioIcon.className = 'fas fa-play';
         
         // Toggle audio on click
-        audioControl.addEventListener('click', function() {
-            if (backgroundAudio.muted) {
-                // Unmute
-                backgroundAudio.muted = false;
+        audioControl.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent document click from firing
+            
+            if (backgroundAudio.paused) {
+                // Play
+                backgroundAudio.play().then(() => {
                 audioControl.classList.remove('muted');
-                audioIcon.classList.remove('fa-volume-mute');
-                audioIcon.classList.add('fa-volume-up');
-                audioText.textContent = 'Sound On';
-                localStorage.setItem('audioMuted', 'false');
-                
-                // Try to play (may require user interaction)
-                backgroundAudio.play().catch(err => {
+                    audioIcon.className = 'fas fa-pause';
+                }).catch(err => {
                     console.log('Audio play failed:', err);
                 });
             } else {
-                // Mute
-                backgroundAudio.muted = true;
+                // Pause
+                backgroundAudio.pause();
                 audioControl.classList.add('muted');
-                audioIcon.classList.remove('fa-volume-up');
-                audioIcon.classList.add('fa-volume-mute');
-                audioText.textContent = 'Sound Off';
-                localStorage.setItem('audioMuted', 'true');
+                audioIcon.className = 'fas fa-play';
             }
         });
-        
-        // Auto-play on first user interaction
-        let hasInteracted = false;
-        const enableAudio = () => {
-            if (!hasInteracted && !savedMuted) {
-                backgroundAudio.play().catch(err => {
-                    console.log('Auto-play prevented:', err);
-                });
-                hasInteracted = true;
-            }
-        };
-        
-        // Listen for any user interaction
-        document.addEventListener('click', enableAudio, { once: true });
-        document.addEventListener('keydown', enableAudio, { once: true });
-        document.addEventListener('touchstart', enableAudio, { once: true });
     }
 });
 
@@ -223,4 +192,3 @@ const quotes = [
 // const selectedQuote = quotes[today % quotes.length];
 // quoteBox.textContent = `"${selectedQuote.text}"`;
 // quoteAuthor.textContent = selectedQuote.author;
-
