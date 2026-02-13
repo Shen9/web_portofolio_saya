@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Legends Gallery - Mario Valentino</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .ml-hero {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 128, 0.05) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(0,255,255,0.1)" stroke-width="0.5"/></svg>');
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .ml-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00ffff, #ff0080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 30px rgba(0, 255, 255, 0.3),
+                             0 0 60px rgba(255, 0, 128, 0.2);
+            }
+            50% {
+                text-shadow: 0 0 50px rgba(0, 255, 255, 0.5),
+                             0 0 80px rgba(255, 0, 128, 0.3);
+            }
+        }
+
+        .video-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .video-card:hover {
+            border-color: rgba(0, 255, 255, 0.8);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4),
+                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .video-container {
+            position: relative;
+            background: #000;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover .video-container video {
+            transform: scale(1.05);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 3px solid #00ffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #00ffff;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .video-card:hover .play-button {
+            background: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-info {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00ffff;
+            margin-bottom: 8px;
+        }
+
+        .video-description {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .profile-section {
+            background: rgba(255, 0, 128, 0.05);
+            border: 2px solid rgba(255, 0, 128, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            margin-bottom: 40px;
+        }
+
+        .profile-section:hover {
+            border-color: rgba(0, 255, 255, 0.6);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .profile-image {
+            width: 280px;
+            height: auto;
+            max-width: 100%;
+            border-radius: 15px;
+            border: 4px solid #00ffff;
+            object-fit: contain;
+            margin: 0 auto 20px;
+            display: block;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3),
+                        inset 0 0 20px rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .profile-section:hover .profile-image {
+            box-shadow: 0 0 50px rgba(0, 255, 255, 0.5),
+                        inset 0 0 30px rgba(0, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            background: rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin-top: 5px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 8px;
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .back-button:hover {
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateX(-5px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 900px;
+            max-height: 80vh;
+            background: #000;
+            border-radius: 15px;
+            border: 2px solid #00ffff;
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-video {
+            width: 100%;
+            height: 100%;
+            max-height: 75vh;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 2px solid #00ffff;
+            border-radius: 50%;
+            color: #00ffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .modal-close:hover {
+            background: #00ffff;
+            color: #000;
+            transform: rotate(90deg);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00ffff, #0080ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+        }
+
+        @media (max-width: 768px) {
+            .ml-title {
+                font-size: 2.5rem;
+            }
+
+            .video-card {
+                margin-bottom: 20px;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <!-- MOBILE LEGENDS HERO SECTION -->
+    <div class="ml-hero">
+        <div>
+            <div class="ml-title">MOBILE LEGENDS: BANG BANG</div>
+            <p class="text-xl text-cyan-400 mt-4 font-light">Gameplay & Highlights</p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-7xl mx-auto mt-10">
+        <!-- Back Button -->
+        <a href="index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Kembali ke Portfolio
+        </a>
+
+        <!-- PROFILE SECTION -->
+        <div class="profile-section mt-8">
+            <h2 class="section-title">PROFIL PEMAIN</h2>
+            <img src="aset/porto/game_galeri/ml/profile.jpg" alt="Profile" class="profile-image">
+            <p class="text-gray-300 mt-3 text-lg">Dedicated player dengan fokus pada gameplay kompetitif dan entertainment</p>
+            
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number">7500+</div>
+                    <div class="stat-label">Matches Played</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">53.10%</div>
+                    <div class="stat-label">Win Rate</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Mythic</div>
+                    <div class="stat-label">Rank</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">ALL-ROUNDER</div>
+                    <div class="stat-label">Role</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAMEPLAY SECTION -->
+        <h2 class="section-title mt-16">GAMEPLAY HIGHLIGHTS</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+            <!-- Video Card 1: GS Maniac -->
+            <div class="video-card" onclick="openModal('video1')">
+                <div class="video-container">
+                    <video>
+                        <source src="aset/porto/game_galeri/ml/gs_maniac.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung video HTML5
+                    </video>
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">
+                        <i class="fas fa-fire text-red-400 mr-2"></i>GS Pentakill Maniac
+                    </div>
+                    <div class="video-description">
+                        Combo lethality GS yang menghasilkan pentakill spectacualr dan membantu tim secure victory
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Card 2: Hanabi Maniac -->
+            <div class="video-card" onclick="openModal('video2')">
+                <div class="video-container">
+                    <video>
+                        <source src="aset/porto/game_galeri/ml/hanabi_maniac.mp4" type="video/mp4">
+                        Browser Anda tidak mendukung video HTML5
+                    </video>
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">
+                        <i class="fas fa-star text-yellow-400 mr-2"></i>Hanabi 1v4 Clutch
+                    </div>
+                    <div class="video-description">
+                        Hanabi carry dan solo wipe enemy team dengan positioning sempurna dan kritis rate tinggi
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIDEO MODAL -->
+    <div class="modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closeModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <video class="modal-video" id="modalVideo" controls autoplay>
+                <source id="modalSource" type="video/mp4">
+                Browser Anda tidak mendukung video HTML5
+            </video>
+        </div>
+    </div>
+
+    <script>
+        function openModal(videoId) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            const modalSource = document.getElementById('modalSource');
+            
+            let source = '';
+            if (videoId === 'video1') {
+                source = 'aset/porto/game_galeri/ml/gs_maniac.mp4';
+            } else if (videoId === 'video2') {
+                source = 'aset/porto/game_galeri/ml/hanabi_maniac.mp4';
+            }
+            
+            modalSource.src = source;
+            modalVideo.load();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modal.classList.remove('active');
+            modalVideo.pause();
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside video
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

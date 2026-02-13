@@ -111,7 +111,6 @@
                      onerror="this.onerror=null; this.src='./aset/jiangyan.jpg';">
                 <h1 class="text-4xl md:text-5xl font-bold mb-2 neon-text">Mario Valentino</h1>
                 <p class="text-xl md:text-2xl mb-4 neon-accent">"King"</p>
-                <div id="dailyQuote" class="daily-quote-display text-lg md:text-xl mb-6 italic text-gray-300 px-4 max-w-2xl mx-auto border-l-4 border-r-4 border-cyan-500 pl-4 pr-4">Loading quote...</div>
                 <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
                     <span class="px-4 py-2 glass-card rounded-full">
                         <i class="fas fa-graduation-cap neon-accent mr-2"></i>Mahasiswa Teknik Informatika
@@ -472,64 +471,33 @@
             <h2 class="text-3xl font-bold mb-6 neon-accent text-center">
                 <i class="fas fa-gamepad mr-2"></i>Galeri Game & Gameplay
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Game Photo/Video 1 -->
-                <div class="game-gallery-item glass-card rounded-xl overflow-hidden">
-                    <img src="aset/game-1.jpg" 
-                         alt="Game Screenshot 1" 
-                         class="w-full"
-                         onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/00ffff?text=Game+Screenshot+1'">
-                </div>
-                
-                <!-- Game Photo/Video 2 -->
-                <div class="game-gallery-item glass-card rounded-xl overflow-hidden">
-                    <video controls class="w-full" onerror="this.style.display='none'">
-                        <source src="aset/gameplay-1.mp4" type="video/mp4">
-                        <source src="aset/gameplay-1.webm" type="video/webm">
-                        Browser Anda tidak mendukung tag video.
-                    </video>
-                </div>
-                
-                <!-- Game Photo/Video 3 -->
-                <div class="game-gallery-item glass-card rounded-xl overflow-hidden">
-                    <img src="aset/game-2.jpg" 
-                         alt="Game Screenshot 2" 
-                         class="w-full"
-                         onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/00ffff?text=Game+Screenshot+2'">
-                </div>
-                
-                <!-- Game Photo/Video 4 -->
-                <div class="game-gallery-item glass-card rounded-xl overflow-hidden">
-                    <video controls class="w-full" onerror="this.style.display='none'">
-                        <source src="aset/gameplay-2.mp4" type="video/mp4">
-                        <source src="aset/gameplay-2.webm" type="video/webm">
-                        Browser Anda tidak mendukung tag video.
-                    </video>
-                </div>
-                
-                <!-- Game Photo/Video 5 -->
-                <div class="game-gallery-item glass-card rounded-xl overflow-hidden">
-                    <img src="aset/game-3.jpg" 
-                         alt="Game Screenshot 3" 
-                         class="w-full"
-                         onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/00ffff?text=Game+Screenshot+3'">
-                </div>
-                
-                <!-- Game Photo/Video 6 -->
-                <div class="game-gallery-item glass-card rounded-xl overflow-hidden">
-                    <img src="aset/game-4.jpg" 
-                         alt="Game Screenshot 4" 
-                         class="w-full"
-                         onerror="this.src='https://via.placeholder.com/400x250/1a1a2e/00ffff?text=Game+Screenshot+4'">
-                </div>
+            
+            <!-- MOBILE LEGENDS FEATURED -->
+            <div class="mb-8">
+                <a href="ml-gallery.html" class="game-feature-card glass-card rounded-xl p-6 md:p-10 overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300" style="background: linear-gradient(135deg, rgba(0, 255, 255, 0.1) 0%, rgba(255, 0, 128, 0.05) 100%);">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                        <div class="md:col-span-2">
+                            <h3 class="text-2xl md:text-3xl font-bold text-cyan-400 mb-3">
+                                <i class="fas fa-crown text-yellow-400 mr-2"></i>MOBILE LEGENDS: BANG BANG
+                            </h3>
+                            <p class="text-gray-300 mb-4 text-lg">
+                                Jelajahi gameplay highlight dan pentakill spektakuler saya dalam Mobile Legends dengan berbagai hero showcase
+                            </p>
+                            <div class="flex flex-wrap gap-3 mb-4">
+                            <button class="px-6 py-2 bg-cyan-500/20 border border-cyan-400 text-cyan-400 rounded-lg hover:bg-cyan-500/40 transition-all">
+                                Lihat Gallery Lengkap <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                        <div class="hidden md:flex justify-center">
+                            <div class="w-32 h-32 rounded-full border-3 border-cyan-400 flex items-center justify-center text-5xl" style="box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1);">
+                                <i class="fas fa-mobile-alt text-cyan-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
-            <p class="text-center text-sm text-gray-500 mt-4">
-                <i class="fas fa-info-circle mr-2"></i>
-                Tambahkan foto atau video gameplay Anda di folder <code class="px-2 py-1 bg-gray-800 rounded">aset/</code>
-            </p>
-        </div>
-
-        <!-- SERVICES / JASA SECTION -->
+            
+                   <!-- SERVICES / JASA SECTION -->
         <div id="services" class="glass-card rounded-2xl p-6 md:p-8 mt-6 service-card">
             <div class="text-center">
                 <div class="service-icon mb-4">
