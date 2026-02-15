@@ -430,6 +430,23 @@ body {
     .audio-text {
         display: none;
     }
+    
+    .game-feature-card {
+        padding: 1rem !important;
+    }
+    
+    .game-feature-card h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .game-feature-card p {
+        font-size: 0.875rem !important;
+    }
+    
+    .game-feature-card button {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
 }
 
 /* Reduce navbar height on smaller screens and adjust the variable */
