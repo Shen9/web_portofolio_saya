@@ -402,7 +402,7 @@ body {
 
 /* Make sure profile image has a small safe offset on very small screens */
 .profile-img {
-    margin-top: 12px;
+    margin-top: 20px;
 }
 
 @media (max-width: 768px) {
@@ -419,12 +419,16 @@ body {
     }
     
     body {
-        padding-top: 70px;
+        padding-top: 90px;
     }
     
     #home {
-        margin-top: 5px;
-        padding-top: 15px;
+        margin-top: 10px;
+        padding-top: 30px;
+    }
+    
+    .profile-img {
+        margin-top: 30px;
     }
     
     .audio-control {
